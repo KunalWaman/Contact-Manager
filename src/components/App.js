@@ -4,23 +4,36 @@ import Header from "./Header";
 import AddContact from "./AddContact";
 import Contactlist from "./Contactlist";
 import Contactcard from './Contactcard';
-
+import {uuid } from  "uuidv4";
 function App() {
-  const LOCAL_STORAGE_KEY ="contacts";
+ const LOCAL_STORAGE_KEY ="contacts";
+
 const [contacts ,setContacts] = useState([]);
  
 const addContactHandler =(contact) => {
   console.log(contact);
- setContacts ([...contacts, contact]);
-}
-useEffect (() => {
-  const retriveContacts =JSON.parse( localStorage.getItem(LOCAL_STORAGE_KEY ));
-  if(retriveContacts) setContacts(retriveContacts);
-}, []);
+ setContacts ([...contacts,{id :uuid (), contact}]);
+};
+useEffect(() => {
+  const retriveContacts = JSON.parse( localStorage.getItem(LOCAL_STORAGE_KEY));
+ if (retriveContacts) setContacts(retriveContacts);
+  } ,[]);
 
-useEffect (() => {
-  localStorage.setItem(LOCAL_STORAGE_KEY ,JSON.stringify(contacts));
-}, [contacts]);
+useEffect(() => {
+localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+} , [contacts]);
+
+// useEffect (() => {
+//   const retriveContacts =JSON.parse( localStorage.getItem( LOCAL_STORAGE_KEY));
+//   if(retriveContacts) setContacts(retriveContacts);
+// }, []);
+
+// useEffect (() => {
+//   localStorage.setItem(LOCAL_STORAGE_KEY ,JSON.stringify(contacts));
+// }, [contacts]);
+// useEffect (() =>{
+
+// },[contacts] )
   return (
   <div className="ui container" >
     <Header />
